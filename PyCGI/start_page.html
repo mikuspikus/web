@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>Угадай число!</title>
+		<link href = "page_style.css" rel = "stylesheet">
+	</head>
+	<body>
+		<h1>Угадай число!</h1>
+		<p>Только сегодня и только для Вас! Угадайте число от 1 до 100 за 7 ходов. Давай, позолоти себе ручку!</p>
+		<form action = "сиджи.cgi" method = "post">
+			<label for = "guessField">Число: </label>
+			<input type = "text" name = "guessField">
+			<input type = "submit" value = "Проверка">
+			<input type = "hidden" name = "game_state" value = "game_start">
+		</form>
+	</body>
+</html>
