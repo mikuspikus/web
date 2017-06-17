@@ -10,10 +10,14 @@ Chat requires:
 
 ## Redis
 ```Redis``` works on GNU\Linux but there is an unofficial [port](https://github.com/rgl/redis/downloads) for Windows. You can learn how to get, install and make it more security friendly for GNU\Linux [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis).
+You will need ```asgie_redis``` for python to be able connect to ```redis```. You can install it using [pip](https://pypi.python.org/pypi/pip):
+```
+pip install asgi_redis
+```
 Redis should be started BEFORE chat.
 
 ### Django and django-channels
-For installing django you can use [pip](https://pypi.python.org/pypi/pip):
+For installing django you can use pip:
 ```
 pip install django
 ```
