@@ -14,7 +14,7 @@ You will need ```asgi_redis``` for python to be able to connect to ```redis```. 
 ```
 pip install asgi_redis
 ```
-Redis should be started BEFORE chat.
+```Redis``` should be started BEFORE chat.
 
 ### Django and django-channels
 For installing django you can use pip:
