@@ -9,7 +9,7 @@ Chat requires:
 * [Redis](https://redis.io/) or another DB (becuase channels need messages to be stored in data structure). 
 
 ## Redis
-```Redis``` works on GNU\Linux but there is an unofficial [port](https://github.com/rgl/redis/downloads) for Windows. You can lear how to get, install and make it more security friendly here: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis (for GNU\Linux). 
+```Redis``` works on GNU\Linux but there is an unofficial [port](https://github.com/rgl/redis/downloads) for Windows. You can lear how to get, install and make it more security friendly for GNU\Linux [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis).
 Redis should be started BEFORE chat.
 
 ### Django and django-channels
