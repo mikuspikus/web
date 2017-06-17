@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+{% block header_text %}Register{% endblock %}
+
+{% block content %}
+    <div class="cur_left">Register:</div>
+    <div class="row">
+        <div class="col-md-5">
+            <form id="user_form" class="post-form" method="post" action"={% url 'register' %}"
+                enctype="multipart/form-data">
+                
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in user_form %}
+                        <div>
+                            {{ field.errors }}
+                            <label for="{{ field.auto_id }}">
+                                {% if field.field.required %}<span class="required">{{ field.label }}</span>
+                                {% else %}{{ field.label }}{% endif %}
+                            </label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                
+                    {% for field in profile_form %}
+                        <div>
+                            {{ field.errors }}
+                            <label for="{{ field.auto_id }}">
+                                {% if field.field.required %}<span class="required">{{ field.label }}</span>
+                                {% else %}{{ field.label }}{% endif %}
+                            </label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="submit" class="btn btn-default" name="submit" value="Register" />
+                <div class="cur_left">Required fields are marked with a <span class="required"></span></div>
+            </form>
+        </div>
+</div>
+{% endblock %}

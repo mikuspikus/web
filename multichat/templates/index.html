@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Home page{% endblock %}
+{% block header_text %}Home page{% endblock %}
+
+{% block content %}
+    <h2>Chat with Channels</h4>
+    <p>
+        Example of a multi-room chatroom, with messages from all rooms a user is in multiplexed over a single WebSocket connection.
+        There is no chat persistence; you only see messages sent to a room while you are in that room.
+        Uses the Django auth system to provide user accounts; users are only able to use the chat once logged in, and this provides their username details for the chatroom.
+        Some channels can be limited to only "staff" users; the example includes code that checks user credentials on incoming WebSockets to allow or deny them access to chatroom streams based on their staff status.
+    </p>
+{% endblock %}
