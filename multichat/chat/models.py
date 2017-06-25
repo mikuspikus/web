@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.six import python_2_unicode_compatible
 from channels import Group
 
-from .settings import MSG_TYPE_MESSAGE
+from .settings import MSG_TYPE_MESSAGE, MSG_TYPE_ALERT, MSG_TYPE_WARNING
 
 
 @python_2_unicode_compatible
@@ -23,7 +23,7 @@ class Room(models.Model):
     @property
     def websocket_group(self):
         """
-        Returns the Channels Group that sockets should subscribe to to get sent
+        Returns the Channels Group that sockets should subscribe to get sent
         messages as they are generated.
         """
         return Group("room-%s" % self.id)

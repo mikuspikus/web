@@ -2,14 +2,10 @@ import json
 from channels import Channel
 from channels.auth import channel_session_user_from_http, channel_session_user
 
-from .settings import MSG_TYPE_LEAVE, MSG_TYPE_ENTER, NOTIFY_USERS_ON_ENTER_OR_LEAVE_ROOMS
+from .settings import MSG_TYPE_LEAVE, MSG_TYPE_ENTER, NOTIFY_USERS_ON_ENTER_OR_LEAVE_ROOMS, MSG_TYPE_ALERT, MSG_TYPE_WARNING, MSG_TYPE_MUTED
 from .models import Room
-from .utils import get_room_or_error, catch_client_error
+from .utils import get_room_or_error, catch_client_error, reform_message
 from .exceptions import ClientError
-
-
-### WebSocket handling ###
-
 
 # This decorator copies the user from the HTTP session (only available in
 # websocket.connect or http.request messages) to the channel session (available
@@ -47,14 +43,8 @@ def ws_disconnect(message):
         except Room.DoesNotExist:
             pass
 
-
-### Chat channel handling ###
-
-
 # Channel_session_user loads the user out from the channel session and presents
-# it as message.user. There's also a http_session_user if you want to do this on
-# a low-level HTTP handler, or just channel_session if all you want is the
-# message.channel_session object without the auth fetching overhead.
+# it as message.user
 @channel_session_user
 @catch_client_error
 def chat_join(message):
@@ -111,4 +101,11 @@ def chat_send(message):
     # Find the room they're sending to, check perms
     room = get_room_or_error(message["room"], message.user)
     # Send the message along
-    room.send_message(message["message"], message.user)
+    if '/w' in message["message"]:
+        room.send_message(reform_message(message["message"], message.user.username, '/w'), message.user, MSG_TYPE_WARNING)
+    elif '/a' in message["message"]:
+        room.send_message(reform_message(message["message"], message.user.username, '/a'), message.user, MSG_TYPE_ALERT)
+    elif '/m' in message["message"]:
+        room.send_message(reform_message(message["message"], message.user.username, '/m'), message.user, MSG_TYPE_MUTED)
+    else:
+        room.send_message(message["message"], message.user)

@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 
 {% block title %}Home page{% endblock %}
-{% block header_text %}Home page{% endblock %}
 
 {% block content %}
+    {% if user.is_authenticated %}
     <h2>Chat with Channels</h4>
-    <p>
-        Example of a multi-room chatroom, with messages from all rooms a user is in multiplexed over a single WebSocket connection.
-        There is no chat persistence; you only see messages sent to a room while you are in that room.
-        Uses the Django auth system to provide user accounts; users are only able to use the chat once logged in, and this provides their username details for the chatroom.
-        Some channels can be limited to only "staff" users; the example includes code that checks user credentials on incoming WebSockets to allow or deny them access to chatroom streams based on their staff status.
-    </p>
+    <div class="main_text">
+        <div class="col-md-12">
+            <p class="empty">
+                Example of a multi-room chatroom, with messages from all rooms a user is in multiplexed over a single WebSocket connection.
+                There is no chat persistence; you only see messages sent to a room while you are in that room.
+            </p>
+            <p class="empty">
+                You can use '/w', '/a', '/m' to send warning, alert and muted messages.
+            </p>
+            <p class="empty">
+                Uses the Django auth system to provide user accounts; users are only able to use the chat once logged in, and this provides their username details for the chatroom.
+                Some channels can be limited to only "staff" users; the example includes code that checks user credentials on incoming WebSockets to allow or deny them access to chatroom streams based on their staff status.
+            </p>
+        </div>
+    </div>
+    {% else %}
+    <div class="main_text">
+        <div class="col-md-12">
+            <p class="empty">
+                To join chat you should <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a>.
+            </p>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

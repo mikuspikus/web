@@ -35,3 +35,11 @@ def get_room_or_error(room_id, user):
     if room.staff_only and not user.is_staff:
         raise ClientError("ROOM_ACCESS_DENIED")
     return room
+
+def reform_message(old_msg, username, msg_type):
+    if msg_type == '/w':
+        return username + ' send warning message: ' + old_msg.replace('/w', '')
+    elif msg_type == '/a':
+        return username + ' send alert message: ' + old_msg.replace('/a', '')
+    elif msg_type == '/m':
+        return username + ' send nothing'

@@ -7,7 +7,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
-@login_required
 def chat_rooms(request):
     """
     Root page view. This is essentially a single-page app, if you ignore the
